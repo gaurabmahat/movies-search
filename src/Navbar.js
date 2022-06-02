@@ -2,22 +2,9 @@ import {
     NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, NavLink,
     Navbar
 } from "reactstrap";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from "react";
-import { apiFetch } from "./Api";
+import InputForm from "./inputForm";
 
 const Navbars = () => {
-    const [userInput, setUserInput] = useState("");
-    const [apiData, setApiData] = useState([]);
-
-    const search = (e) => {
-        e.preventDefault();
-
-        if (userInput !== "") {
-            setApiData(apiFetch(userInput))
-        }
-    }
-
     return (
         <div>
             <Navbar
@@ -48,16 +35,7 @@ const Navbars = () => {
                             </NavLink>
                         </NavItem>
                     </Nav>
-                    <form className="d-flex" onSubmit={search}>
-                        <input className="form-control me-2"
-                            type="search"
-                            placeholder="Search"
-                            aria-label="Search"
-                            value={userInput}
-                            onChange={(e) => setUserInput(e.target.value)}
-                        />
-                        <button className="btn btn-outline-dark" type="submit">Search</button>
-                    </form>
+                    <InputForm />
                 </Collapse>
             </Navbar>
         </div>
