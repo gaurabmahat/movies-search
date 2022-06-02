@@ -3,8 +3,21 @@ import {
     Navbar
 } from "reactstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useState } from "react";
+import { apiFetch } from "./Api";
 
 const Navbars = () => {
+    const [userInput, setUserInput] = useState("");
+    const [apiData, setApiData] = useState([]);
+
+    const search = (e) => {
+        e.preventDefault();
+
+        if (userInput !== "") {
+            setApiData(apiFetch(userInput))
+        }
+    }
+
     return (
         <div>
             <Navbar
@@ -16,25 +29,34 @@ const Navbars = () => {
                     Home
                 </NavbarBrand>
                 <NavbarToggler onClick={function noRefCheck() { }} />
-                <Collapse navbar>
+                <Collapse
+                    isOpen
+                    navbar
+                >
                     <Nav
                         className="me-auto"
                         navbar
                     >
                         <NavItem>
-                            <NavLink href="/components/">
+                            <NavLink href="/movies">
                                 Movies
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/components/">
+                            <NavLink href="/series">
                                 Series
                             </NavLink>
                         </NavItem>
                     </Nav>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search Movies/Series" aria-label="Search" />
-                        <button class="btn btn-outline-primary" type="submit">Search</button>
+                    <form className="d-flex" onSubmit={search}>
+                        <input className="form-control me-2"
+                            type="search"
+                            placeholder="Search"
+                            aria-label="Search"
+                            value={userInput}
+                            onChange={(e) => setUserInput(e.target.value)}
+                        />
+                        <button className="btn btn-outline-dark" type="submit">Search</button>
                     </form>
                 </Collapse>
             </Navbar>
