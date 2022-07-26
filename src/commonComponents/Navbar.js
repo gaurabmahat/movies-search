@@ -13,7 +13,7 @@ const Navbars = () => {
                 light
             >
                 <NavbarBrand href="/">
-                    Home
+                    MovieInfo
                 </NavbarBrand>
                 <NavbarToggler onClick={function noRefCheck() { }} />
                 <Collapse

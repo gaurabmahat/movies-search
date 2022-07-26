@@ -1,20 +1,22 @@
 import { useState } from "react";
-import { apiFetch, apiFetchMovies, apiFetchSeries } from "./Api";
+import { apiFetchMovies, apiFetchSeries } from "../Api";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const InputForm = () => {
     const [userInput, setUserInput] = useState("");
-    const [apiData, setApiData] = useState([]);
+    const [movieData, setMovieData] = useState([]);
+    const [seriesData, setSeriesData] = useState([]);
 
     const search = (e) => {
         e.preventDefault();
 
         if (userInput !== "") {
-            setApiData(apiFetchMovies(userInput))
-            setApiData(apiFetchSeries(userInput))
+            setMovieData(apiFetchMovies(userInput))
+            setSeriesData(apiFetchSeries(userInput))
+
+            //window.location.href = '/moviesSeries'
         }
     }
-
     return (
         <form className="d-flex" onSubmit={search}>
             <input className="form-control me-2"
@@ -27,6 +29,7 @@ const InputForm = () => {
             <button className="btn btn-outline-dark" type="submit">Search</button>
         </form>
     );
+
 }
 
 export default InputForm;
