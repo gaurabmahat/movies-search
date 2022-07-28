@@ -1,15 +1,33 @@
 import { useContext } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { UserInput } from "../Helper/UserInputContext";
+import { MoviesArray } from "../Helper/UserInputContext";
 
 const Moviesseries = () => {
 
-    const { inputFromUser, setInputFromUser } = useContext(UserInput);
-
+    const { moviesArray } = useContext(MoviesArray);
+    
     return (
         <div className="moviesSeries">
             <h2>Movies and Series</h2>
-            <h3>{inputFromUser}</h3>
+            <div className="container my-3">
+                <div className="row">
+                    {
+                        moviesArray.map((value, index) => {
+                            return (
+                            <div className="col-3" key={index}>
+                                <div className="card" style={{ width: "18rem" }}>
+                                    <img src={value.Poster} className="card-img-top" alt="..." />
+                                    <div className="card-body">
+                                        <h3 className="card-title">{value.Year}</h3>
+                                        <h4 className="card-text">{value.Title}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            )
+                        })
+                    }
+                </div>
+            </div>
         </div>
     );
 }

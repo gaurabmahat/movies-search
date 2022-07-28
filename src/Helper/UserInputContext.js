@@ -1,3 +1,3 @@
 import { createContext } from 'react';
 
-export const UserInput = createContext({});
+export const MoviesArray = createContext([]);

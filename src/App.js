@@ -7,15 +7,15 @@ import Home from './Home';
 import NotFound from './NotFound';
 import Moviesseries from './displayMoviesSeries/moviesSeries';
 import { useState } from 'react';
-import { UserInput } from './Helper/UserInputContext';
+import { MoviesArray } from './Helper/UserInputContext';
 
 function App() {
 
-  const [inputFromUser, setInputFromUser] = useState('Empty')
+  const [moviesArray, setMoviesArray] = useState([])
 
   return (
     <Router>
-      <UserInput.Provider value={{inputFromUser, setInputFromUser}}>
+      <MoviesArray.Provider value={{moviesArray, setMoviesArray}}>
       <div className="App">
         <Navbars />
         <div className="content">
@@ -38,7 +38,7 @@ function App() {
           </Routes>
         </div>
       </div>
-      </UserInput.Provider>
+      </MoviesArray.Provider>
     </Router>
   );
 }
