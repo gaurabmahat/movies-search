@@ -6,16 +6,20 @@ import Movies from './displayMoviesSeries/Movies';
 import Home from './Home';
 import NotFound from './NotFound';
 import Moviesseries from './displayMoviesSeries/moviesSeries';
-import ApiDataProvider from './Helper/ContextArraysFromApi';
+import { useState } from 'react';
+import { UserInput } from './Helper/UserInputContext';
 
 function App() {
+
+  const [inputFromUser, setInputFromUser] = useState('Empty')
+
   return (
     <Router>
+      <UserInput.Provider value={{inputFromUser, setInputFromUser}}>
       <div className="App">
-        <ApiDataProvider>
-          <Navbars />
-          <div className="content">
-            <Routes>
+        <Navbars />
+        <div className="content">
+          <Routes>
               <Route path="/"
                 element={<Home />}
               />
@@ -28,13 +32,13 @@ function App() {
               <Route path="/series"
                 element={<Series />}
               />
-              <Route path='*'
-                element={<NotFound />}
-              />
-            </Routes>
-          </div>
-        </ApiDataProvider>
+            <Route path='*'
+              element={<NotFound />}
+            />
+          </Routes>
+        </div>
       </div>
+      </UserInput.Provider>
     </Router>
   );
 }

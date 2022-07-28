@@ -1,21 +1,27 @@
 import { useState } from "react";
 import { apiFetchMovies, apiFetchSeries } from "../Api";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useContext } from "react";
+import { UserInput } from "../Helper/UserInputContext";
+import { useNavigate } from "react-router-dom";
 
-const InputForm = () => {
+function InputForm() {
+    const navigate = useNavigate();
+
     const [userInput, setUserInput] = useState("");
-    const [movieData, setMovieData] = useState([]);
-    const [seriesData, setSeriesData] = useState([]);
+    // const { moviesData, setMoviesData } = useContext(MoviesData);
+    // const { setSeriesData } = useContext(SeriesData);
+    const { inputFromUser, setInputFromUser } = useContext(UserInput);
 
     const search = (e) => {
         e.preventDefault();
+      
+        // setMoviesData(apiFetchMovies(userInput))
+        // setSeriesData(apiFetchSeries(userInput))
+        setInputFromUser(userInput);
 
-        if (userInput !== "") {
-            setMovieData(apiFetchMovies(userInput))
-            setSeriesData(apiFetchSeries(userInput))
-
-            //window.location.href = '/moviesSeries'
-        }
+        //window.location.href = '/moviesSeries'
+        navigate('/moviesSeries');
     }
     return (
         <form className="d-flex" onSubmit={search}>
@@ -29,7 +35,6 @@ const InputForm = () => {
             <button className="btn btn-outline-dark" type="submit">Search</button>
         </form>
     );
-
 }
 
 export default InputForm;
