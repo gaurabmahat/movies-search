@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { apiFetchMovies, apiFetchSeries } from "../Api";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useContext } from "react";
-import { MoviesArray } from "../Helper/UserInputContext";
+import { MoviesArray, SeriesArray } from "../Helper/UserInputContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -10,9 +9,9 @@ function InputForm() {
     const navigate = useNavigate();
 
     const [userInput, setUserInput] = useState("");
-    // const { moviesData, setMoviesData } = useContext(MoviesData);
-    // const { setSeriesData } = useContext(SeriesData);
+
     const { setMoviesArray } = useContext(MoviesArray);
+    const { setSeriesArray } = useContext(SeriesArray);
 
     const search = (e) => {
         e.preventDefault();
@@ -21,9 +20,19 @@ function InputForm() {
         .then((response) => {
             console.log(response);
             setMoviesArray(response.data.Search);
+        }).catch(err => {
+            console.log(err);
         })
 
-        navigate('/moviesSeries')
+        axios.get(`http://www.omdbapi.com/?s=${userInput}&type=series&apikey=592e0b79`)
+        .then((response) => {
+            console.log(response);
+            setSeriesArray(response.data.Search);
+        }).catch(err => {
+            console.log(err);
+        })
+
+        navigate('/moviesSeries');
     }
 
     return (

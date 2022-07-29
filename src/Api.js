@@ -7,6 +7,7 @@ export const apiFetchMovies = async (userInput) => {
         return response.data.Search
     } catch (error) {
         console.log(error)
+        return error
     }
 }
 
