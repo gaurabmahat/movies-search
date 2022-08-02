@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { MoviesArray, SeriesArray } from "../Helper/UserInputContext";
 
