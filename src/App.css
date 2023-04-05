@@ -17,3 +17,17 @@
   margin: 0 auto;
   padding-left: 50px;
 }
+
+.moviesSeries h1 {
+  color: blueviolet;
+}
+
+.container {
+  border-top: 1px solid black;
+  border-bottom: 1px dotted black;
+  border-radius: 14px;
+}
+
+.row {
+  padding: 1%;
+}
