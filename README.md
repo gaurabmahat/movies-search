@@ -1,5 +1,7 @@
 This web app lets you search for movies and series. It uses OMDb API, which returns a list of movies and series based on the given search words. The list contains title, year and poster, which is then displayed to the user in card format. 
 
+Example, For search word: John
+
 ##Movies 
 
 <img width="959" alt="Movies" src="https://user-images.githubusercontent.com/91778163/230458342-2ba9a84f-a6ea-49e9-b6ba-4496f1b8a1c2.png">
